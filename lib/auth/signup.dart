@@ -19,6 +19,7 @@ class _RegisterState extends State<Register> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
+// === Testing === //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
