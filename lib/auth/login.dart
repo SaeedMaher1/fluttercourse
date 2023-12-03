@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttercourse/compoment/coustombutton.dart';
 import 'package:fluttercourse/compoment/textformfield.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:form_validation/form_validation.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,35 +17,34 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Padding(
           padding: EdgeInsets.all(20),
           child: ListView(
             children: [
               Form(
+                key: formState,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(height: 50),
-                      Container(height: 20),
                       Text(
                         "Login",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      Container(
+                      SizedBox(
                         height: 20,
                       ),
                       Text(
                         "Login to continue using the app",
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Container(
+                      SizedBox(
                         height: 20,
                       ),
                       Text(
@@ -52,20 +52,23 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Container(
+                      SizedBox(
                         height: 10,
                       ),
                       Textformfield(
                         hinttext: "Enter your Email",
                         mycontroller: email,
-                        suffixIcon: Icon(Icons.abc),
+                        icon: Icons.email,
                         validator: (val) {
-                          if (val == " ") {
-                            return "Can't to be Empty";
-                          }
+                          final validatator = Validator(validators: [
+                            const EmailValidator(),
+                            const RequiredValidator(),
+                          ]);
+                          return validatator.validate(
+                              label: 'Email', value: val);
                         },
                       ),
-                      Container(
+                      SizedBox(
                         height: 10,
                       ),
                       Text(
@@ -73,18 +76,21 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      Container(
+                      SizedBox(
                         height: 10,
                       ),
                       Textformfield(
-                          hinttext: "Enter your Password",
-                          mycontroller: password,
-                          suffixIcon: Icon(Icons.visibility_off),
-                          validator: (val) {
-                            if (val == " ") {
-                              return "Can't to be Empty";
-                            }
-                          }),
+                        hinttext: "Enter your Password",
+                        mycontroller: password,
+                        icon: Icons.visibility,
+                        validator: (val) {
+                          final validatator = Validator(validators: [
+                            const RequiredValidator(),
+                          ]);
+                          return validatator.validate(
+                              label: 'Password', value: val);
+                        },
+                      ),
                       Container(
                         alignment: Alignment.bottomRight,
                         margin: EdgeInsets.only(top: 10, bottom: 20),
@@ -104,7 +110,7 @@ class _LoginState extends State<Login> {
                       final credential = await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: email.text, password: password.text);
-                      Navigator.of(context).pushReplacementNamed("homepage");
+                      Navigator.of(context).pushNamed("homepage");
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'user-not-found') {
                         print('No user found for that email.');
@@ -131,7 +137,7 @@ class _LoginState extends State<Login> {
                   }
                 },
               ),
-              Container(
+              SizedBox(
                 height: 20,
               ),
               MaterialButton(
@@ -151,18 +157,18 @@ class _LoginState extends State<Login> {
                       )
                     ],
                   )),
-              Container(
+              SizedBox(
                 height: 20,
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed("register");
+                  Navigator.of(context).pushNamed("register");
                 },
                 child: Center(
                   child: Text.rich(TextSpan(children: [
                     TextSpan(text: "Dont have a Acount?"),
                     TextSpan(
-                        text: "Register",
+                        text: " Register",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.blue)),
                   ])),
