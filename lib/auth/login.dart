@@ -93,12 +93,8 @@ class _LoginState extends State<Login> {
                       ),
                       Container(
                         alignment: Alignment.bottomRight,
-                        margin: EdgeInsets.only(top: 10, bottom: 20),
-                        child: Text(
-                          "Forget Password ?",
-                          textAlign: TextAlign.right,
-                          style: TextStyle(fontSize: 14),
-                        ),
+                        margin: EdgeInsets.only(top: 5, bottom: 6),
+                        child: TextButton(onPressed: (){Navigator.of(context).pushNamed("pass");}, child: Text("Forget password?",style: TextStyle(color: Colors.blue),))
                       ),
                     ]),
               ),
