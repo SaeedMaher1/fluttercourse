@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,40 +29,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  /*void initState() {
+  @override
+  void initState() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('=============User is currently signed out!');
+        debugPrint('=============User is currently signed out!');
         Navigator.of(context).pushReplacementNamed("login");
       } else {
-        print('=============User is signed in!');
+        debugPrint('=============User is signed in!');
         Navigator.of(context).pushReplacementNamed("homepage");
       }
     });
     super.initState();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Welcome() ,
+      home: const Welcome(),
       routes: {
-        "welcome":(context) =>const Welcome(),
+        "welcome": (context) => const Welcome(),
         "register": (context) => const Register(),
         "login": (context) => const Login(),
         "homepage": (context) => const Homepage(),
         "setting": (context) => const Setting(),
-        "pass":(context) => const pass(),
-       "verify":(context) =>const Verify(),
-       "newpass":(context) =>const Newpass(),
-       "editprof":(context) =>const Editprof(),
-       "language":(context) =>const Lunguage(),
-       "settinggg":(context) =>const Settinggg(),
-       "accountset":(context) =>const Accountset(),
-       "help":(context) =>const Help(),
-       "privicy":(context) =>const Privacy(),
-       },
+        "pass": (context) => const pass(),
+        "verify": (context) => const Verify(),
+        "newpass": (context) => const Newpass(),
+        "editprof": (context) => const Editprof(),
+        "language": (context) => const Lunguage(),
+        "settinggg": (context) => const Settinggg(),
+        "accountset": (context) => const Accountset(),
+        "help": (context) => const Help(),
+        "privicy": (context) => const Privacy(),
+      },
     );
   }
 }
