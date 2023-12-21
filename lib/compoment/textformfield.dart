@@ -12,7 +12,7 @@ class Textformfield extends StatelessWidget {
       required this.hinttext,
       required this.mycontroller,
       required this.validator,
-      this.icon});
+      this.icon, required String hintText, required Icon suffixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,15 @@ class Textformfield extends StatelessWidget {
         validator: validator,
         controller: mycontroller,
         decoration: InputDecoration(
-          label: Text(hinttext),
+         // label: Text(hinttext),
+         hintText: hinttext,
           hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-          filled: true,
+          //filled: true,
           fillColor: Colors.grey[200],
-          icon: Icon(icon),
+          //icon: Icon(icon),
+          suffixIcon: Icon(icon),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(

@@ -29,8 +29,8 @@ class _LoginState extends State<Login> {
               Form(
                 key: formState,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         "Login",
@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
                         height: 20,
                       ),
                       Text(
-                        "Email",
+                        "Username",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -56,9 +56,9 @@ class _LoginState extends State<Login> {
                         height: 10,
                       ),
                       Textformfield(
-                        hinttext: "Enter your Email",
+                        hinttext: "Enter your username or email",
                         mycontroller: email,
-                        icon: Icons.email,
+                        suffixIcon:Icon(Icons.email),
                         validator: (val) {
                           final validatator = Validator(validators: [
                             const EmailValidator(),
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                           ]);
                           return validatator.validate(
                               label: 'Email', value: val);
-                        },
+                        }, hintText: '', //suffixIcon: Icon(Icons.abc),
                       ),
                       SizedBox(
                         height: 10,
@@ -82,14 +82,14 @@ class _LoginState extends State<Login> {
                       Textformfield(
                         hinttext: "Enter your Password",
                         mycontroller: password,
-                        icon: Icons.visibility,
+                        suffixIcon: Icon(Icons.visibility_off_outlined),
                         validator: (val) {
                           final validatator = Validator(validators: [
                             const RequiredValidator(),
                           ]);
                           return validatator.validate(
                               label: 'Password', value: val);
-                        },
+                        }, hintText: '',
                       ),
                       Container(
                         alignment: Alignment.bottomRight,
@@ -134,13 +134,15 @@ class _LoginState extends State<Login> {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: 200,
               ),
+              Center(child: Text("or login with")),
+              SizedBox(height: 10,),
               MaterialButton(
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  color: Colors.red[700],
+                  color: Colors.grey,
                   textColor: Colors.white,
                   onPressed: () {},
                   child: Row(
