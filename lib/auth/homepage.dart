@@ -48,7 +48,7 @@ class _HomepageState extends State<Homepage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: double.infinity,
+                width: 1000,
                 height: 100,
                 
                 child: ElevatedButton(
