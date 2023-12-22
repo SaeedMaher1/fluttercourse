@@ -5,30 +5,37 @@ class Textformfield extends StatelessWidget {
   final TextEditingController mycontroller;
 
   final String? Function(String?)? validator;
-  final IconData? icon;
+  final Widget? icon;
 
-  const Textformfield(
-      {super.key,
-      required this.hinttext,
-      required this.mycontroller,
-      required this.validator,
-      this.icon, required String hintText, required Icon suffixIcon});
+  final bool? obscureText;
+
+  const Textformfield({
+    super.key,
+    required this.hinttext,
+    required this.mycontroller,
+    required this.validator,
+    this.icon,
+    required String hintText,
+    this.obscureText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
         validator: validator,
         controller: mycontroller,
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
-         // label: Text(hinttext),
-         hintText: hinttext,
+          suffixIcon: icon,
+
+          // label: Text(hinttext),
+          hintText: hinttext,
           hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
           //filled: true,
-          fillColor: Colors.grey[200],
-          //icon: Icon(icon),
-          suffixIcon: Icon(icon),
+          //fillColor: Colors.grey[200],
+
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(

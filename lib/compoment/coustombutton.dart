@@ -10,7 +10,7 @@ class CoustomButtonAuth extends StatelessWidget {
     return MaterialButton(
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.orange[400],
+      color: Colors.orange,
       textColor: Colors.white,
       onPressed: onPressed,
       child: Text(title),
